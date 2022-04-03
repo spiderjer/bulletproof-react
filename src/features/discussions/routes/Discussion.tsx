@@ -11,7 +11,7 @@ import { UpdateDiscussion } from '../components/UpdateDiscussion';
 
 export const Discussion = () => {
   const { discussionId } = useParams();
-  const discussionQuery = useDiscussion({ discussionId });
+  const discussionQuery = useDiscussion({ discussionId: discussionId || '' });
 
   if (discussionQuery.isLoading) {
     return (
@@ -30,7 +30,7 @@ export const Discussion = () => {
         <span className="text-xs font-bold">{formatDate(discussionQuery.data.createdAt)}</span>
         <div className="mt-6 flex flex-col space-y-16">
           <div className="flex justify-end">
-            <UpdateDiscussion discussionId={discussionId} />
+            <UpdateDiscussion discussionId={discussionId || ''} />
           </div>
           <div>
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -42,7 +42,7 @@ export const Discussion = () => {
             </div>
           </div>
           <div>
-            <Comments discussionId={discussionId} />
+            <Comments discussionId={discussionId || ''} />
           </div>
         </div>
       </ContentLayout>
